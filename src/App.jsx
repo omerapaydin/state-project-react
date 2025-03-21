@@ -3,20 +3,28 @@ import "./App.css";
 import Course from "./Course";
 
 function getRandomCourse() {
-  const courseArray = ["Angular", "Bootstrap", "Ccsharp", "KompleWeb"];
+  const courseArray = ["Angular", "Bootstrap", "Ccsharp", "Kompleweb"];
   return courseArray[Math.floor(Math.random() * courseArray.length)];
 }
 
 function App() {
-  const [courser, setCourser] = useState([]);
+  const [courses, setCourser] = useState([]);
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    setCourser([...courses, getRandomCourse()]);
+  };
 
   return (
-    <>
-      <button onClick={handleClick}>Kurs Ekle</button>
-      <Course />
-    </>
+    <div className="App">
+      <button className="appButton" onClick={handleClick}>
+        Kurs Ekle
+      </button>
+      <div className="courseList">
+        {courses.map((course, index) => {
+          return <Course key={index} courseName={course} />;
+        })}
+      </div>
+    </div>
   );
 }
 
